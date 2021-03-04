@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf60a84a-8c66-41c2-ac48-45cc7481f5b6" name="Default Changelist" comment="" />
+    <list default="true" id="cf60a84a-8c66-41c2-ac48-45cc7481f5b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -119,6 +124,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1pCfW412nm1nN424LV41bsibzuF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -127,7 +133,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../iut/webmmi/drupal-8.9.11" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -144,7 +150,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614692021215</updated>
-      <workItem from="1614692024198" duration="700000" />
+      <workItem from="1614692024198" duration="1516000" />
+      <workItem from="1614763264120" duration="22000" />
     </task>
     <servers />
   </component>
@@ -152,6 +159,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="765" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1614763281140">
+      <screen x="45" y="27" width="1875" height="1053" />
+    </state>
+    <state x="765" y="310" width="424" height="484" key="FileChooserDialogImpl/45.27.1875.1053@45.27.1875.1053" timestamp="1614763281140" />
     <state x="638" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1614692026033">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
