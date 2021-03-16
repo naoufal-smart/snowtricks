@@ -1,3 +1,100 @@
-body {
-    background-color: lightgray;
+body{margin:0}
+
+/* Header */
+
+#header{display: flex; justify-content: space-between; align-items: center; width: 100%; z-index: 10; background-color: #fff;}
+#header nav ul{list-style-type: none; display: inline-flex; margin-right: 4em;}
+#header nav ul li a{padding: 1em;}
+#header #logo img{border-radius: 50%; border:3px solid pink; margin: 1em;}
+
+/* footer */
+#footer{padding: 2em;}
+
+/* Teaser */
+
+#teaser {position: relative; height: calc(100vh - 158px); background-repeat: no-repeat; background-size: cover; background-position:center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+#scrollDown, #scrollUp{position: absolute; bottom: 0; right:0; color:#000; font-size: 70px; margin: 0.5em; padding: 0.5em;}
+
+/* Tricks */
+
+#tricks{position: relative; min-height: 100vh;}
+
+.tricklist{display: flex; flex-wrap: wrap; margin: 1em;}
+
+.tricklist .trick .innerCard{width: 90%; margin:0 auto}
+
+.tricklist .trick .innerCard img{width: 100%;}
+
+.btn.loadMore{margin: 1em auto; width:max-content; display: block;}
+
+/* Components */
+
+.btn{margin: 1em; padding: 1em; background-color: pink; font-weight: bold;}
+
+/* Page Tricks */
+
+body, #sheet, #header{ position: relative; }
+
+body.trick::before {
+    content: "";
+    background-image: url('https://picsum.photos/1400/800');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
 }
+
+
+#sheet{width: 80%; margin: 4em auto 0;}
+#sheet #mainPicture img{width: 100%;}
+
+#seeAllMedia{ display: none;}
+@media(max-width:800px){
+    #seeAllMedia{ display: block; width: max-content; margin: 1em auto; }
+    #figures {display: none;}
+}
+
+#figures .list{display: flex; flex-wrap: wrap; margin: 1em 0;}
+#figures .list .figure .inner{width: 90%; margin:1em 0}
+#figures .list .figure .inner img, #figures .list .figure .inner iframe{width: 100%;}
+
+#aside{width:80%; margin: 0 auto}
+
+#description{margin: 1em auto; width: 85%;}
+
+#infos{display: flex; justify-content: space-around; margin: 1em auto; padding: 1em; border-bottom: 3px solid pink;}
+#infos .info{background-color: pink; padding: 1em;}
+
+.comments form.comment{border-bottom: 3px solid pink; margin: 1em auto; width: 100%; display: flex; padding: 1em; justify-content: center;}
+.comments .list {margin: 1em auto; width: 100%; padding: 1em; }
+.comments .list .comment{display: flex; justify-content: space-between;}
+.comments .list .comment .user img{margin: 1em; border-radius: 50%;}
+
+
+
+/* Page trick edit */
+
+.controls{display: flex;}
+.controls .control{font-size: 1.2em; padding: 0.5em; color: blue}
+.controls .control:hover{color: green}
+
+#mainPicture{position: relative;}
+#mainPicture .controls{position: absolute; justify-content: space-between;top: 0; right: 0;}
+
+#figures .figure .controls{justify-content: center;top: 0; right: 0;}
+
+form#edition textarea {display: block; width: 100%;}
+form#edition .actions { display: flex; justify-content: end;}
+
+
+
+
+
+
+
+
