@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\FigureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
- * @ORM\Entity(repositoryClass=FigureRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\FigureRepository", repositoryClass=FigureRepository::class)
  */
 class Figure
 {
@@ -23,17 +25,13 @@ class Figure
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $description;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $text;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -48,7 +46,7 @@ class Figure
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=group::class)
+     * @ORM\ManyToOne(targetEntity=Group::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
@@ -66,18 +64,6 @@ class Figure
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
 
         return $this;
     }
