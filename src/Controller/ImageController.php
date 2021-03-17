@@ -91,7 +91,7 @@ class ImageController extends AbstractController
      */
     public function edit(Request $request, Image $image): Response
     {
-        $form = $this->createForm(Image1Type::class, $image);
+        $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
