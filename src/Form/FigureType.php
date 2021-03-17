@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Figure;
+use App\Entity\Group;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,11 +16,11 @@ class FigureType extends AbstractType
         $builder
             ->add('name')
             ->add('text')
-            ->add('slug')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('category')
-        ;
+            ->add('category', EntityType::class, [
+
+                'class' => Group::class,
+                'choice_label' => 'name',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
