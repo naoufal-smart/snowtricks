@@ -19,7 +19,7 @@ body{margin:0}
 
 /* Tricks */
 
-#tricks{position: relative; min-height: 100vh;}
+#tricks{position: relative; min-height: 100vh; padding-top:1em}
 
 .tricklist{display: flex; flex-wrap: wrap; margin: 1em;}
 
