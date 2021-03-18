@@ -97,8 +97,14 @@ class ImageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            // TODO: Implement edit action
+
+
+
             return $this->redirectToRoute('image_index');
         }
+
+        //TODO: Display Image ...
 
         return $this->render('image/edit.html.twig', [
             'image' => $image,
