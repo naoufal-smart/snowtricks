@@ -95,6 +95,9 @@ class ImageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // TODO
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('image_index');
