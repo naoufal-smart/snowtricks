@@ -97,6 +97,7 @@ class ImageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // TODO
+            $uploadedFile = $form->get('filename')->getData();
 
             $this->getDoctrine()->getManager()->flush();
 
