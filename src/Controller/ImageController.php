@@ -95,10 +95,6 @@ class ImageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // TODO
-            $uploadedFile = $form->get('filename')->getData();
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('image_index');
