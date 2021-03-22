@@ -16,8 +16,7 @@ class FigureType extends AbstractType
         $builder
             ->add('name')
             ->add('text')
-            ->add('category', EntityType::class, [
-
+            ->add('group', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'name',
             ]);

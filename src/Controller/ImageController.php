@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Form\ImageType;
 use App\Repository\ImageRepository;
+use App\Service\ImageUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,7 @@ class ImageController extends AbstractController
     /**
      * @Route("/new", name="image_new", methods={"GET","POST"})
      */
-    public function new(Request $request,  SluggerInterface $slugger): Response
+    public function new(Request $request,  SluggerInterface $slugger, ImageUploader $imageUploader): Response
     {
         $image = new Image();
         $form = $this->createForm(ImageType::class, $image);
@@ -41,27 +42,11 @@ class ImageController extends AbstractController
             $uploadedFile = $form->get('filename')->getData();
 
             if ($uploadedFile) {
-                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
-                try {
-                    $uploadedFile->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                $newFilename = $imageUploader->upload($uploadedFile);
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $image->setFilename($newFilename);
             }
-
-
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($image);
@@ -89,17 +74,25 @@ class ImageController extends AbstractController
     /**
      * @Route("/{id}/edit", name="image_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Image $image): Response
+    public function edit(Request $request, Image $image, ImageUploader $imageUploader): Response
     {
         $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            // TODO: Implement edit action
+            $uploadedFile = $form->get('filename')->getData();
 
+            if ($uploadedFile) {
 
+                $newFilename = $imageUploader->upload($uploadedFile);
+
+                $image->setFilename($newFilename);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($image);
+            $entityManager->flush();
 
             return $this->redirectToRoute('image_index');
         }
