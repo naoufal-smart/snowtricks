@@ -11,13 +11,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ImageUploader
 {
 
+    const DIRECTORY = 'images';
+
     private $slugger;
     private $targetDirectory;
 
-    public function __construct(string $targetDirectory, SluggerInterface $slugger){
+    public function __construct(SluggerInterface $slugger, $uploadsDirectory){
 
         $this->slugger = $slugger;
-        $this->targetDirectory = $targetDirectory;
+        $this->targetDirectory = $uploadsDirectory.'/'.self::DIRECTORY;
 
     }
 

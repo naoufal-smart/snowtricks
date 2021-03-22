@@ -25,3 +25,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 /public/uploads/images/*
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

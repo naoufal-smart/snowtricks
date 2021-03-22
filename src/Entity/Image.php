@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use App\Service\ImageUploader;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +33,16 @@ class Image
      * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
+
+
+
+    public function getFilePath(){
+
+        return 'uploads/'.ImageUploader::DIRECTORY.'/'.$this->getFilename();
+    }
+
+
+
 
     public function getId(): ?int
     {
