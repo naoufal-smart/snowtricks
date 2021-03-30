@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Filename</th>
-                <td><img src="{{ asset('uploads/images/' ~  image.filename) }}"/></td>
+                <td><img src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/></td>
             </tr>
 
 

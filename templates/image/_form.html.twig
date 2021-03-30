@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    {{ form_row(form.name) }}
+
+    {{ form_row(form.filename) }}
+
+    <div>
+        {% if form.vars.data.filename|default %}
+
+            <img src="{{ asset(form.vars.data.filePath)|imagine_filter('trick_thumbnail') }}"
+
+        {% endif %}
+    </div>
+
+    {{ form_row(form.figure) }}
+
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

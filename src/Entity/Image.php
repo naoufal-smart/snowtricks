@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use App\Service\ImageUploader;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,17 @@ class Image
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Figure;
+    private $figure;
+
+
+
+    public function getFilePath(){
+
+        return 'uploads/'.ImageUploader::DIRECTORY.'/'.$this->getFilename();
+    }
+
+
+
 
     public function getId(): ?int
     {
@@ -64,12 +75,12 @@ class Image
 
     public function getFigure(): ?Figure
     {
-        return $this->Figure;
+        return $this->figure;
     }
 
-    public function setFigure(?Figure $Figure): self
+    public function setFigure(?Figure $figure): self
     {
-        $this->Figure = $Figure;
+        $this->figure = $figure;
 
         return $this;
     }

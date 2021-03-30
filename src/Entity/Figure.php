@@ -49,13 +49,13 @@ class Figure
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class)
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $group;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="Figure", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="figure", orphanRemoval=true)
      */
     private $images;
 
@@ -147,14 +147,14 @@ class Figure
         return $this;
     }
 
-    public function getCategory(): ?group
+    public function getGroup(): ?Group
     {
-        return $this->category;
+        return $this->group;
     }
 
-    public function setCategory(?group $category): self
+    public function setGroup(?Group $group): self
     {
-        $this->category = $category;
+        $this->group = $group;
 
         return $this;
     }
