@@ -93,6 +93,8 @@
                 <div class="info">grabs</div>
                 <div class="info date"><span>Créé le : </span>{{ figure.createdAt|format_datetime(pattern="d MMM Y") }}</div>
                 <div class="info date"><span>Mis à jour le : </span>{{ figure.updatedAt|format_datetime(pattern="d MMM Y") }}</div>
+                <div class="action edit"><button><a class="btn" href="{{ path('figure_edit', {'id': figure.id}) }}">edit</a></button></div>
+                <div class="action delete">{{ include('figure/_delete_form.html.twig') }}</div>
             </div>
 
             <div class="comments">
@@ -198,7 +200,5 @@
 
     <a href="{{ path('figure_index') }}">back to list</a>
 
-    <a href="{{ path('figure_edit', {'id': figure.id}) }}">edit</a>
 
-    {{ include('figure/_delete_form.html.twig') }}
 {% endblock %}

@@ -31,7 +31,7 @@ body{margin:0}
 
 /* Components */
 
-.btn{margin: 1em; padding: 1em; background-color: pink; font-weight: bold;}
+.btn{}
 
 /* Page Tricks */
 
@@ -69,7 +69,8 @@ body.trick::before {
 #description{margin: 1em auto; width: 85%;}
 
 #infos{display: flex; justify-content: space-around; margin: 1em auto; padding: 1em; border-bottom: 3px solid pink;}
-#infos .info{background-color: pink; padding: 1em;}
+#infos .info{padding: 1em; font-size: 0.8em}
+#infos .action{padding: 1em; font-size: 0.8em}
 
 .comments form.comment{border-bottom: 3px solid pink; margin: 1em auto; width: 100%; display: flex; padding: 1em; justify-content: center;}
 .comments form.comment textarea {width:100%}
@@ -90,6 +91,7 @@ body.trick::before {
 #mainPicture .controls{position: absolute; justify-content: space-between;top: 0; right: 0;}
 
 #figures .figure .controls{justify-content: center;top: 0; right: 0;}
+body.figure-edition textarea{width: 100%}
 
 form#edition textarea {display: block; width: 100%;}
 form#edition .actions { display: flex; justify-content: end;}
