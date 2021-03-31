@@ -3,11 +3,112 @@
 {% block title %}Edit Figure{% endblock %}
 
 {% block body %}
-    <h1>Edit Figure</h1>
 
-    {{ include('figure/_form.html.twig', {'button_label': 'Update'}) }}
+    <section id="sheet">
 
-    <a href="{{ path('figure_index') }}">back to list</a>
+        {{ form_start(form) }}
 
-    {{ include('figure/_delete_form.html.twig') }}
+        <div id="mainPicture">
+
+            <h1>{{ form_row(form.name) }}</h1>
+
+            <img src="https://picsum.photos/1200/800" alt="">
+
+        </div>
+
+        <a id="seeAllMedia" class="btn">See All Media</a>
+
+        <div id="figures">
+
+            <div class="list">
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div class="figure">
+
+                    <div class="inner video-container">
+
+                        <iframe id="ytplayer" type="text/html" width="300" height="168" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <article id="description">
+            {{ form_row(form.text, ) }}
+        </article>
+
+        <aside id="aside">
+
+            <div id="infos">
+                {{ form_row(form.group) }}
+            </div>
+
+        </aside>
+
+
+
+
+
+        <button class="btn">{{ button_label|default('Save') }}</button>
+
+        {{ form_end(form) }}
+
+        <a href="{{ path('figure_index') }}">back to list</a>
+
+        {{ include('figure/_delete_form.html.twig') }}
+
+    </section>
+
 {% endblock %}

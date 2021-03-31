@@ -56,7 +56,7 @@ class FigureController extends AbstractController
     {
         return $this->render('figure/show.html.twig', [
             'figure' => $figure,
-            'bodyCssClass' => 'tricks'
+            'bodyCssClass' => 'figure'
         ]);
     }
 
@@ -77,6 +77,7 @@ class FigureController extends AbstractController
         return $this->render('figure/edit.html.twig', [
             'figure' => $figure,
             'form' => $form->createView(),
+            'bodyCssClass' => 'figure-edition'
         ]);
     }
 
