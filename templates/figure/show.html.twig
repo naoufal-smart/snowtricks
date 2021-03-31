@@ -3,6 +3,168 @@
 {% block title %}Figure{% endblock %}
 
 {% block body %}
+
+    <section id="sheet">
+
+        <div id="mainPicture">
+
+            <h1>{{ figure.name }}</h1>
+
+            <img src="https://picsum.photos/1200/800" alt="">
+
+        </div>
+
+        <a id="seeAllMedia" class="btn">See All Media</a>
+
+        <div id="figures">
+
+            <div class="list">
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+
+                    </div>
+
+                </div>
+
+                <div class="figure">
+
+                    <div class="inner video-container">
+
+                        <iframe id="ytplayer" type="text/html" width="300" height="168" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <article id="description">
+            {{ figure.text }}
+        </article>
+
+        <aside id="aside">
+
+            <div id="infos">
+                <div class="info">grabs</div>
+                <div class="info date"><span>Créé le : </span>{{ figure.createdAt|format_datetime(pattern="d MMM Y") }}</div>
+                <div class="info date"><span>Mis à jour le : </span>{{ figure.updatedAt|format_datetime(pattern="d MMM Y") }}</div>
+            </div>
+
+            <div class="comments">
+
+                <form action="" class="comment">
+
+                    <textarea cols="200"></textarea>
+                    <button type="submit">Laisser un commentaire</button>
+
+                </form>
+
+                <div class="list">
+
+                    <div class="comment">
+
+                        <div class="user">
+                            <img src="https://picsum.photos/100" alt="">
+                            <div class="name">Elton John</div>
+                        </div>
+
+                        <div class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis labore eum aliquam quis beatae similique vitae aperiam exercitationem voluptatum, adipisci placeat, corrupti necessitatibus illum, ratione aliquid mollitia suscipit consequatur reiciendis.
+                        </div>
+
+                    </div>
+                    <div class="comment">
+
+                        <div class="user">
+                            <img src="https://picsum.photos/100" alt="">
+                            <div class="name">Elton John</div>
+                        </div>
+
+                        <div class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis labore eum aliquam quis beatae similique vitae aperiam exercitationem voluptatum, adipisci placeat, corrupti necessitatibus illum, ratione aliquid mollitia suscipit consequatur reiciendis.
+                        </div>
+
+                    </div>
+                    <div class="comment">
+
+                        <div class="user">
+                            <img src="https://picsum.photos/100" alt="">
+                            <div class="name">Elton John</div>
+                        </div>
+
+                        <div class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis labore eum aliquam quis beatae similique vitae aperiam exercitationem voluptatum, adipisci placeat, corrupti necessitatibus illum, ratione aliquid mollitia suscipit consequatur reiciendis.
+                        </div>
+
+                    </div>
+                    <div class="comment">
+
+                        <div class="user">
+                            <img src="https://picsum.photos/100" alt="">
+                            <div class="name">Elton John</div>
+                        </div>
+
+                        <div class="text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis labore eum aliquam quis beatae similique vitae aperiam exercitationem voluptatum, adipisci placeat, corrupti necessitatibus illum, ratione aliquid mollitia suscipit consequatur reiciendis.
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a href="#" class="loadMore btn">LoadMore</a>
+
+            </div>
+
+        </aside>
+
+    </section>
+
     <h1>Figure</h1>
 
     <table class="table">

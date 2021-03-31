@@ -51,6 +51,7 @@ body.trick::before {
 
 
 #sheet{width: 80%; margin: 4em auto 0;}
+#sheet #mainPicture h1{position:absolute; width:300px; top:40%; left:50%; margin-left:-150px;text-align: center}
 #sheet #mainPicture img{width: 100%;}
 
 #seeAllMedia{ display: none;}
@@ -71,9 +72,11 @@ body.trick::before {
 #infos .info{background-color: pink; padding: 1em;}
 
 .comments form.comment{border-bottom: 3px solid pink; margin: 1em auto; width: 100%; display: flex; padding: 1em; justify-content: center;}
+.comments form.comment textarea {width:100%}
 .comments .list {margin: 1em auto; width: 100%; padding: 1em; }
-.comments .list .comment{display: flex; justify-content: space-between;}
-.comments .list .comment .user img{margin: 1em; border-radius: 50%;}
+.comments .list .comment{display: flex; justify-content: space-between;margin-top:1em}
+.comments .list .comment .user img{margin: 0 1em; border-radius: 50%;}
+.comments .list .comment .user .name{margin: 1em; text-align:center;}
 
 
 

@@ -22,6 +22,7 @@ class FigureController extends AbstractController
     {
         return $this->render('figure/index.html.twig', [
             'figures' => $figureRepository->findAll(),
+            'bodyCssClass' => 'homepage'
         ]);
     }
 
@@ -49,12 +50,13 @@ class FigureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="figure_show", methods={"GET"})
+     * @Route("/{slug}", name="figure_show", methods={"GET"})
      */
     public function show(Figure $figure): Response
     {
         return $this->render('figure/show.html.twig', [
             'figure' => $figure,
+            'bodyCssClass' => 'tricks'
         ]);
     }
 

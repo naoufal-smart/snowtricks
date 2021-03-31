@@ -17,7 +17,7 @@
 
 </head>
 
-<body class='homepage'>
+<body class={{ bodyCssClass|default }}>
 
     <header id="header">
 
@@ -38,11 +38,7 @@
 
     </header>
 
-    <section id="container">
-
-        {% block body %}{% endblock %}
-
-    </section>
+    {% block body %}{% endblock %}
 
     <footer id="footer">
 
