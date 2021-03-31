@@ -13,6 +13,10 @@
             <h1>{{ form_row(form.name) }}</h1>
 
             <img src="https://picsum.photos/1200/800" alt="">
+            <div class="controls">
+                <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+            </div>
 
         </div>
 
@@ -27,6 +31,10 @@
                     <div class="inner">
 
                         <img src="https://picsum.photos/300/168" alt="">
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
 
                     </div>
 
@@ -36,26 +44,10 @@
                     <div class="inner">
 
                         <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="figure">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="figure">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
 
                     </div>
 
@@ -66,27 +58,72 @@
                     <div class="inner">
 
                         <img src="https://picsum.photos/300/168" alt="">
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="figure">
+                <div id="" class="figure">
 
-                    <div class="inner video-container">
+                    <div class="inner">
 
-                        <iframe id="ytplayer" type="text/html" width="300" height="168" src="https://www.youtube.com/embed/M7lc1UVf-VE" frameborder="0" allowfullscreen></iframe>
+                        <img src="https://picsum.photos/300/168" alt="">
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
 
                     </div>
 
                 </div>
+
+                <div id="" class="figure">
+
+                    <div class="inner">
+
+                        <img src="https://picsum.photos/300/168" alt="">
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                {% for video in form.videos %}
+
+                    <div class="figure">
+
+                        <div class="inner video-container">
+
+                            <iframe width="320" height="180" src="{{video.vars.data.tag|raw }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        </div>
+
+                        <div class="edit">{{ form_row(video.tag) }}</div>
+
+                        <div class="controls">
+                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+
+                    </div>
+
+                {% endfor %}
 
             </div>
 
         </div>
 
         <article id="description">
-            {{ form_row(form.text, ) }}
+            {{ form_row(form.text) }}
         </article>
 
         <aside id="aside">
@@ -96,10 +133,6 @@
             </div>
 
         </aside>
-
-
-
-
 
         <button class="btn">{{ button_label|default('Save') }}</button>
 
