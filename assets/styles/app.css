@@ -63,6 +63,7 @@ body.trick::before {
 #figures .list{display: flex; flex-wrap: wrap; margin: 1em 0;}
 #figures .list .figure .inner{width: 90%; margin:1em 0}
 #figures .list .figure .inner img, #figures .list .figure .inner iframe{width: 100%;}
+.video-container > iframe { height: 100%;}
 
 #aside{width:80%; margin: 0 auto}
 
