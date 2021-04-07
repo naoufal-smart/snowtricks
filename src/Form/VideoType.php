@@ -16,7 +16,7 @@ class VideoType extends AbstractType
             ->add('tag', TextareaType::class,[
                 'label' => false,
             ] )
-            ->add('Figure')
+            // ->add('Figure')
         ;
     }
 

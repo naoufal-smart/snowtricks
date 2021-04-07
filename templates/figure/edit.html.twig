@@ -24,7 +24,7 @@
 
         <div id="figures">
 
-            <div class="list">
+            <div class="list pictures">
 
                 <div id="" class="figure">
 
@@ -95,7 +95,9 @@
 
                 </div>
 
+            </div>
 
+            <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
 
                 {% for video in form.videos %}
 
@@ -119,6 +121,8 @@
                 {% endfor %}
 
             </div>
+
+            <button type="button" class="add_item_link" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
 
         </div>
 
