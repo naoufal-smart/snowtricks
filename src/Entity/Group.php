@@ -5,9 +5,15 @@ namespace App\Entity;
 use App\Repository\GroupRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GroupRepository::class)
+ * @UniqueEntity(
+ *     fields={"name"},
+ *     message="Ce nom de groupe existe déjà"
+ * )
  * @ORM\Table(name="`group`")
  */
 class Group
@@ -21,6 +27,8 @@ class Group
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Le nom ne peut pas être vide")
+     *
      */
     private $name;
 
@@ -30,8 +38,9 @@ class Group
     private $figures;
 
 
-
-
+    public function __construct(){
+        $this->figures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {

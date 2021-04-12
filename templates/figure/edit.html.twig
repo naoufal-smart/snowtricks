@@ -134,6 +134,9 @@
 
             <div id="infos">
                 {{ form_row(form.group) }}
+                {% if form.new_group is defined %}
+                    {{ form_row(form.new_group) }}
+                {% endif %}
             </div>
 
         </aside>

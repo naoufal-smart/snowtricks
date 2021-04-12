@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Form\FigureType;
+use App\Entity\Group;
 use App\Repository\FigureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/figure")
@@ -68,10 +70,23 @@ class FigureController extends AbstractController
         $form = $this->createForm(FigureType::class, $figure);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() ) {
 
-            return $this->redirectToRoute('figure_index');
+            if(isset($form['new_group']) && $form['new_group']->getData() !== null){
+                // Persistence des données
+                $group = new Group();
+                $group->setName($form['new_group']->getData());
+                $figure->setGroup($group);
+                $this->getDoctrine()->getManager()->persist($figure);
+            }
+
+            if($form->isValid()){
+
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('figure_index');
+
+            }
+
         }
 
         return $this->render('figure/edit.html.twig', [

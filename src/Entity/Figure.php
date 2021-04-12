@@ -49,7 +49,7 @@ class Figure
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures")
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $group;
@@ -163,6 +163,7 @@ class Figure
     public function setGroup(?Group $group): self
     {
         $this->group = $group;
+        $this->group->addFigure($this);
 
         return $this;
     }
