@@ -20,7 +20,6 @@ class GroupFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        // create 20 products! Bam!
         for ($i = 0; $i < 5; $i++) {
             $group = new Group();
             $group->setName($this->faker->sentence(3));
