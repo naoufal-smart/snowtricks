@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\GroupRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GroupRepository::class)
+ * @UniqueEntity("name")
  * @ORM\Table(name="`group`")
  */
 class Group
@@ -21,6 +25,9 @@ class Group
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min=3)
+     *
      */
     private $name;
 
@@ -30,8 +37,14 @@ class Group
     private $figures;
 
 
+    public function __construct(){
+        $this->figures = new ArrayCollection();
+    }
 
-
+    public function __toString(){
+        return 'aaa';
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {

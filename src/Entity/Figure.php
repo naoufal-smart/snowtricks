@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -24,6 +25,7 @@ class Figure
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -49,7 +51,7 @@ class Figure
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures")
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $group;
@@ -163,6 +165,7 @@ class Figure
     public function setGroup(?Group $group): self
     {
         $this->group = $group;
+        // $this->group->addFigure($this);
 
         return $this;
     }

@@ -6,6 +6,12 @@
 
 <section id="container">
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div id="teaser" style="background-image:url('https://picsum.photos/1400/800')">
 
         <div class="hero">
@@ -95,7 +101,6 @@
         <a id="scrollUp"><i class="fas fa-arrow-up"></i></a>
 
     </div>
-
 
     <h1>Figure index</h1>
 

@@ -4,18 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Form\FigureType;
+use App\Entity\Group;
+use App\Form\Model\FigureEditFormType;
 use App\Repository\FigureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/figure")
  */
 class FigureController extends AbstractController
 {
-    /**
+
+     /**
      * @Route("/", name="figure_index", methods={"GET"})
      */
     public function index(FigureRepository $figureRepository): Response
@@ -40,6 +44,8 @@ class FigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Création effectuée avec succès');
+
             return $this->redirectToRoute('figure_index');
         }
 
@@ -54,6 +60,7 @@ class FigureController extends AbstractController
      */
     public function show(Figure $figure): Response
     {
+
         return $this->render('figure/show.html.twig', [
             'figure' => $figure,
             'bodyCssClass' => 'figure'
@@ -63,15 +70,20 @@ class FigureController extends AbstractController
     /**
      * @Route("/{id}/edit", name="figure_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Figure $figure): Response
+    public function edit(Request $request, Figure $figure, ValidatorInterface $validator): Response
     {
+
         $form = $this->createForm(FigureType::class, $figure);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() ) {
 
-            return $this->redirectToRoute('figure_index');
+            if($form->isValid()){
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('success', 'Mise à jour effectuée avec succès');
+                return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
+            }
         }
 
         return $this->render('figure/edit.html.twig', [
@@ -90,6 +102,9 @@ class FigureController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($figure);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Suppression effectuée avec succès');
+
         }
 
         return $this->redirectToRoute('figure_index');
