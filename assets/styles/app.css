@@ -66,8 +66,8 @@ body.trick::before {
 /* Medias */
 
 #medias .list{display: flex; flex-wrap: wrap; margin: 1em 0;}
-#medias .list .media .inner{width: 90%; margin:1em 0}
-#medias .list .picture .inner img, #medias .list .video .inner iframe{width: 100%;}
+#medias .list .media > * {width: 90%; margin:1em 0}
+#medias .list .media > * > * {width: 100%;}
 .video-container > iframe { height: 100%;}
 
 #aside{width:80%; margin: 0 auto}
@@ -100,9 +100,9 @@ body.trick::before {
 #mainPicture .controls{position: absolute; justify-content: space-between;top: 0; right: 0;}
 
 body.figure-edition #medias .media .controls {justify-content: center;top: 0; right: 0;}
-body.figure-edition textarea{width: 100%; padding: 2em;}
-body.figure-edition .list.video .edit {display:none}
-body.figure-edition .list.video .edit.visible {display:block}
+body.figure-edition textarea{width: 100%; padding: 2em; box-sizing: border-box;}
+body.figure-edition .list.videos .video .edit {display:none}
+body.figure-edition .list.videos .video .edit.visible {display:block}
 
 
 

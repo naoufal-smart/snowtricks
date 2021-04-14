@@ -107,13 +107,13 @@
 
                             <iframe width="320" height="180" src="{{video.vars.data.tag|raw }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                        </div>
+                            <div class="edit">{{ form_row(video.tag) }}</div>
 
-                        <div class="edit">{{ form_row(video.tag) }}</div>
+                            <div class="controls">
+                                <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
+                            </div>
 
-                        <div class="controls">
-                            <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
                         </div>
 
                     </div>
