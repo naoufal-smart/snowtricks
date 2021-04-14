@@ -15,7 +15,9 @@
 
         <div id="mainPicture">
 
-            <h1>{{ form_row(form.name) }}</h1>
+            <h1>Modifie ce trick ! </h1>
+
+            <h2 id="mainText">{{ form_row(form.name) }}</h2>
 
             <img src="https://picsum.photos/1200/800" alt="">
             <div class="controls">
@@ -138,9 +140,6 @@
         <aside id="aside">
 
             <div id="infos">
-                {% if errors is defined %}
-                    {{ dump(errors) }}
-                {% endif %}
                 {{ form_row(form.group) }}
 
             </div>

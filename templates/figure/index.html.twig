@@ -20,7 +20,7 @@
     <div id="teaser" style="background-image:url('https://picsum.photos/1400/800')">
 
         <div class="hero">
-            <h1>Phrase d'accroche</h1>
+            <h1 id="mainText">Phrase d'accroche</h1>
         </div>
 
         <a id="scrollDown"><i class="fas fa-arrow-down"></i></a>
@@ -31,68 +31,39 @@
 
         <div class="tricklist">
 
-            <div id="" class="trick card">
+            {% for figure in figures %}
 
-                <div class="innerCard">
+                <div id="{{ figure.id }}" class="trick card">
 
-                    <img src="https://picsum.photos/270/200" alt="">
+                    <div class="innerCard">
 
-                    <h3><a href="fig1">Tail grab</a></h3>
+                        <img src="https://picsum.photos/300/168" alt="">
 
-                </div>
+                        <div class="links">
+                            <a href="{{ path('figure_show', {'slug': figure.slug}) }}">{{ figure.name }}</a>
+                            <a href="{{ path('figure_edit', {'id': figure.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+                        </div>
 
-            </div>
-            <div id="" class="trick card">
-
-                <div class="innerCard">
-
-                    <img src="https://picsum.photos/270/200" alt="">
-
-                    <h3><a href="trick.php">Tail grab</a></h3>
+                    </div>
 
                 </div>
+            {% else %}
 
-            </div>
-            <div id="" class="trick card">
+                    Aucune figure pour le moment ...
 
-                <div class="innerCard">
+            {% endfor %}
 
-                    <img src="https://picsum.photos/270/200" alt="">
-
-                    <h3><a href="trick.php">Tail grab</a></h3>
-
-                </div>
-
-            </div>
-            <div id="" class="trick card">
+            <div id="" class="trick card add_new">
 
                 <div class="innerCard">
 
-                    <img src="https://picsum.photos/270/200" alt="">
+                    <div class="fake">
 
-                    <h3><a href="trick.php">Tail grab</a></h3>
+                        <button class="btn"><a href="{{ path('figure_new') }}">Ajoute un nouveau trick !</a></button>
 
-                </div>
+                    </div>
 
-            </div>
-            <div id="" class="trick card">
 
-                <div class="innerCard">
-
-                    <img src="https://picsum.photos/300/200" alt="">
-
-                    <h3><a href="trick.php">Tail grab</a></h3>
-
-                </div>
-
-            </div>
-            <div id="" class="trick card">
-
-                <div class="innerCard">
-
-                    <img src="https://picsum.photos/300/200" alt="">
-
-                    <h3><a href="trick.php">Tail grab</a></h3>
 
                 </div>
 
@@ -101,7 +72,6 @@
         </div>
 
         <a href="#" class="loadMore btn">LoadMore</a>
-
 
         <a id="scrollUp"><i class="fas fa-arrow-up"></i></a>
 

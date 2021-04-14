@@ -45,12 +45,13 @@ class FigureController extends AbstractController
 
             $this->addFlash('success', 'Création effectuée avec succès');
 
-            return $this->redirectToRoute('figure_index');
+            return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/new.html.twig', [
             'figure' => $figure,
             'form' => $form->createView(),
+            'bodyCssClass' => 'figure_creation'
         ]);
     }
 
