@@ -2,6 +2,11 @@
 
 {% block title %}Edit Figure{% endblock %}
 
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('figure_edit') }}
+    {% endblock %}
+
 {% block body %}
 
     <section id="sheet">
@@ -87,8 +92,8 @@
 
                         <img src="https://picsum.photos/300/168" alt="">
                         <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                            <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
                         </div>
 
                     </div>

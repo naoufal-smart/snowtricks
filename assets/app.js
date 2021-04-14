@@ -20,8 +20,21 @@ add_video.addEventListener('click', (e) => {
     let newForm = prototype;
     newForm = newForm.replace(/__name__/g, index);
     let newVideo = document.createElement('div');
+    newVideo.classList.add('media');
+    newVideo.classList.add('video');
     newVideo.innerHTML = newForm;
+    newVideo.innerHTML += `<div class="controls">
+                <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
+            </div>`
+
     videosList.appendChild(newVideo);
+
+    // event listener
+    const delete_videao_textarea_icon = newVideo.querySelector('.delete');
+    delete_videao_textarea_icon.addEventListener('click', function(e){
+        e.preventDefault();
+        newVideo.parentElement.removeChild(newVideo);
+    })
 })
 
 // Toggle le champ de saisie pour modifier la video
