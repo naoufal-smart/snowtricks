@@ -31,78 +31,29 @@
 
         <div id="medias">
 
-            <div class="list pictures">
+            <div class="list pictures" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
 
-                <div id="" class="media picture">
+                {% for image in figure.images %}
 
-                    <div class="inner">
+                    <div id="image_{{ image.id }}" class="media picture">
 
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                        <div class="inner">
+
+                            <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
+                            <div class="controls">
+                                <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
+                {% endfor %}
 
             </div>
+
+            <button type="button" class="add_item_link btn" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
 
             <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
 

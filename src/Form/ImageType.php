@@ -43,10 +43,11 @@ class ImageType extends AbstractType
                 'constraints' => $imageConstraints,
                'required' => false,
             ])
-            ->add('figure', EntityType::class, [
+/*            ->add('figure', EntityType::class, [
                 'class' => Figure::class,
                 'choice_label' => 'name',
-            ]);
+            ])*/
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

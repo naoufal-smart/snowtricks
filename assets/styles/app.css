@@ -69,6 +69,8 @@ body.trick::before {
 #medias .list .media > * > * {width: 100%;}
 .video-container > iframe { height: 100%;}
 
+.trick_thumbnail {width:300px; max-height: 168px; overflow: hidden}
+
 #aside{width:80%; margin: 0 auto}
 
 #description{margin: 1em auto; width: 85%;}

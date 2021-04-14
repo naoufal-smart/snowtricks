@@ -20,54 +20,19 @@
 
             <div class="list">
 
-                <div id="" class="media picture">
+                {% for image in figure.images %}
+
+                <div id="image_{{ image.id }}" class="media picture">
 
                     <div class="inner">
 
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
+                        <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
 
                     </div>
 
                 </div>
 
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
+                {% endfor %}
 
                 {% for video in figure.videos %}
 
