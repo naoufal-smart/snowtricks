@@ -133,10 +133,11 @@
         <aside id="aside">
 
             <div id="infos">
-                {{ form_row(form.group) }}
-                {% if form.new_group is defined %}
-                    {{ form_row(form.new_group) }}
+                {% if errors is defined %}
+                    {{ dump(errors) }}
                 {% endif %}
+                {{ form_row(form.group) }}
+
             </div>
 
         </aside>

@@ -24,19 +24,5 @@ add_video.addEventListener('click', (e) => {
     videosList.appendChild(newVideo);
 })
 
-// Afficher ou masquer le champ de saisi "nouveau groupe"
-const new_group_field = document.getElementById('figure_new_group');
-new_group_field.parentElement.style.display = 'none';
-
-const figure_group_field = document.getElementById('figure_group');
-figure_group_field.addEventListener('change', function(e){
-    if(this.value == 'add'){
-        new_group_field.parentElement.style.display = 'block';
-        new_group_field.required = true;
-    }else{
-        new_group_field.parentElement.style.display = 'none';
-        new_group_field.parentElement.required = false;
-    }
-})
 
 
