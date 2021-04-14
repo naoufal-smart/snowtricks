@@ -2,10 +2,10 @@
 
 {% block title %}Edit Figure{% endblock %}
 
-    {% block javascripts %}
-        {{ parent() }}
-        {{ encore_entry_script_tags('figure_edit') }}
-    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('figure_edit') }}
+{% endblock %}
 
 {% block body %}
 
@@ -127,7 +127,7 @@
 
             </div>
 
-            <button type="button" class="add_item_link" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
+            <button type="button" class="add_item_link btn" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
 
         </div>
 
@@ -151,7 +151,7 @@
 
         {{ form_end(form) }}
 
-        <a href="{{ path('figure_index') }}">back to list</a>
+        <button class="btn"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
 
         {{ include('figure/_delete_form.html.twig') }}
 
