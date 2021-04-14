@@ -34,7 +34,7 @@ body{margin:0}
 .alert{
     position: absolute; z-index: 1; padding: 1em; margin: 1em; right: 0; background-color: greenyellow; border-radius: 4px; }
 
-.btn{}
+.btn{ padding:0.6em 1em; display: inline-block}
 
 /* Page Tricks */
 
@@ -60,12 +60,14 @@ body.trick::before {
 #seeAllMedia{ display: none;}
 @media(max-width:800px){
     #seeAllMedia{ display: block; width: max-content; margin: 1em auto; }
-    #figures {display: none;}
+    #medias {display: none;}
 }
 
-#figures .list{display: flex; flex-wrap: wrap; margin: 1em 0;}
-#figures .list .figure .inner{width: 90%; margin:1em 0}
-#figures .list .figure .inner img, #figures .list .figure .inner iframe{width: 100%;}
+/* Medias */
+
+#medias .list{display: flex; flex-wrap: wrap; margin: 1em 0;}
+#medias .list .media .inner{width: 90%; margin:1em 0}
+#medias .list .picture .inner img, #medias .list .video .inner iframe{width: 100%;}
 .video-container > iframe { height: 100%;}
 
 #aside{width:80%; margin: 0 auto}
@@ -74,7 +76,10 @@ body.trick::before {
 
 #infos{display: flex; justify-content: space-around; margin: 1em auto; padding: 1em; border-bottom: 3px solid pink;}
 #infos .info{padding: 1em; font-size: 0.8em}
-#infos .action{padding: 1em; font-size: 0.8em}
+#infos .action{padding: 0.6em 1em; font-size: 0.8em}
+
+
+/* Commentaires */
 
 .comments form.comment{border-bottom: 3px solid pink; margin: 1em auto; width: 100%; display: flex; padding: 1em; justify-content: center;}
 .comments form.comment textarea {width:100%}
@@ -94,11 +99,10 @@ body.trick::before {
 #mainPicture{position: relative;}
 #mainPicture .controls{position: absolute; justify-content: space-between;top: 0; right: 0;}
 
-#figures .figure .controls{justify-content: center;top: 0; right: 0;}
-body.figure-edition textarea{width: 100%}
-
-form#edition textarea {display: block; width: 100%;}
-form#edition .actions { display: flex; justify-content: end;}
+body.figure-edition #medias .media .controls {justify-content: center;top: 0; right: 0;}
+body.figure-edition textarea{width: 100%; padding: 2em;}
+body.figure-edition .list.video .edit {display:none}
+body.figure-edition .list.video .edit.visible {display:block}
 
 
 

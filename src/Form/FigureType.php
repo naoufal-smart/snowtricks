@@ -19,7 +19,11 @@ class FigureType extends AbstractType
 
         $builder
             ->add('name')
-            ->add('text')
+            ->add('text', null, [
+                'attr' => [
+                    'rows' => 10,
+                ]
+            ])
             ->add('group', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'name',
