@@ -5,13 +5,12 @@ namespace App\Controller;
 use App\Entity\Figure;
 use App\Form\FigureType;
 use App\Entity\Group;
-use App\Form\Model\FigureEditFormType;
 use App\Repository\FigureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 /**
  * @Route("/figure")
@@ -70,7 +69,7 @@ class FigureController extends AbstractController
     /**
      * @Route("/{id}/edit", name="figure_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Figure $figure, ValidatorInterface $validator): Response
+    public function edit(Request $request, Figure $figure): Response
     {
 
         $form = $this->createForm(FigureType::class, $figure);

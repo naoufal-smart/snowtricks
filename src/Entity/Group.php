@@ -11,7 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GroupRepository::class)
- * @UniqueEntity("name")
+ * @UniqueEntity(
+ *     fields={"name"},
+ *     message="Ce nom de groupe existe déjà"
+ * )
  * @ORM\Table(name="`group`")
  */
 class Group
@@ -25,7 +28,7 @@ class Group
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message = "Le nom ne peut pas être vide")
      * @Assert\Length(min=3)
      *
      */
