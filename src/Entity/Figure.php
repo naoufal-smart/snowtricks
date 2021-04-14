@@ -165,7 +165,7 @@ class Figure
     public function setGroup(?Group $group): self
     {
         $this->group = $group;
-        // $this->group->addFigure($this);
+        $this->group->addFigure($this);
 
         return $this;
     }

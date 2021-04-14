@@ -1,3 +1,4 @@
+html {scroll-behavior: smooth;}
 body{margin:0}
 
 /* Header */
@@ -34,7 +35,7 @@ body{margin:0}
 .alert{
     position: absolute; z-index: 1; padding: 1em; margin: 1em; right: 0; background-color: greenyellow; border-radius: 4px; }
 
-.btn{ padding:0.6em 1em; display: inline-block}
+.btn{ padding:0.6em 1em; display: inline-block; margin-top: 0.5em;}
 
 /* Page Tricks */
 
