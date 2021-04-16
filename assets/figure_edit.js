@@ -82,3 +82,14 @@ Array.from(edit_picture_icons).forEach(function(icon){
         picture_field.classList.toggle('visible');
     })
 });
+
+// Supprimer une image
+const delete_picture_icon = document.querySelectorAll('body.figure-edition .list.pictures .picture .delete')
+let picture;
+Array.from(delete_picture_icon).forEach(function(icon){
+    icon.addEventListener('click', function(e){
+        e.preventDefault();
+        picture = e.currentTarget.closest('.picture');
+        picture.parentElement.removeChild(picture);
+    })
+});
