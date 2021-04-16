@@ -33,13 +33,21 @@
 
             <div class="list pictures" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
 
-                {% for image in figure.images %}
+                {% for image in form.images %}
 
-                    <div id="image_{{ image.id }}" class="media picture">
+                    {% set index = loop.index0 %}
+
+                    <div id="image_{{ index }}" class="media picture">
 
                         <div class="inner">
 
-                            <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
+                            <img class="trick_thumbnail" src="{{ asset(figure.images[index].filePath)|imagine_filter('trick_thumbnail') }}"/>
+
+                            <div  class="edit">
+                                {{ form_row(image.name) }}
+                                {{ form_row(image.filename) }}
+                            </div>
+
                             <div class="controls">
                                 <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>

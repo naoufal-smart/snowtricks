@@ -57,7 +57,7 @@ class Figure
     private $group;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="figure", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
      */
     private $images;
 

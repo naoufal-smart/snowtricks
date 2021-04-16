@@ -104,6 +104,8 @@ body.figure-edition #medias .media .controls {justify-content: center;top: 0; ri
 body.figure-edition textarea{width: 100%; padding: 2em; box-sizing: border-box;}
 body.figure-edition .list.videos .video .edit {display:none}
 body.figure-edition .list.videos .video .edit.visible {display:block}
+body.figure-edition .list.pictures .picture .edit {display:none}
+body.figure-edition .list.pictures .picture .edit.visible {display:block}
 
 /* Page trick create */
 body.figure_creation #medias .media .controls {justify-content: center;top: 0; right: 0;}
