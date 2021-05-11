@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
+use App\Entity\Image;
 use App\Form\FigureType;
 use App\Entity\Group;
 use App\Repository\FigureRepository;
+use App\Service\ImageUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,12 +47,13 @@ class FigureController extends AbstractController
 
             $this->addFlash('success', 'Création effectuée avec succès');
 
-            return $this->redirectToRoute('figure_index');
+            return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/new.html.twig', [
             'figure' => $figure,
             'form' => $form->createView(),
+            'bodyCssClass' => 'figure_creation'
         ]);
     }
 
@@ -69,7 +72,7 @@ class FigureController extends AbstractController
     /**
      * @Route("/{id}/edit", name="figure_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Figure $figure): Response
+    public function edit(Request $request, Figure $figure, ImageUploader $imageUploader): Response
     {
 
         $form = $this->createForm(FigureType::class, $figure);
@@ -79,7 +82,28 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() ) {
 
             if($form->isValid()){
-                $this->getDoctrine()->getManager()->flush();
+
+                $imagesForm = $form->get('images');
+
+                foreach ($imagesForm as $key => $imageForm){
+                    $uploadedFile = $imageForm->get('filename')->getData();
+                    if($uploadedFile !== null){
+                        // Upload Image
+                        $newFilename = $imageUploader->upload($uploadedFile, null);
+                        $image = new Image();
+                        $image->setFilename($newFilename);
+                        $image->setName($imageForm->get('name')->getData());
+                        $figure->addImage($image);
+                        // Delete Submitted Field !!!
+                        // dump($figure->getImages()); // Données brutes postées
+                        $originalData = $figure->getImages()[$key];
+                        $figure->removeImage($originalData);
+                    }
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($figure);
+                $entityManager->flush();
                 $this->addFlash('success', 'Mise à jour effectuée avec succès');
                 return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
             }

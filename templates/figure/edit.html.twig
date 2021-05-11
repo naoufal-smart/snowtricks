@@ -15,7 +15,9 @@
 
         <div id="mainPicture">
 
-            <h1>{{ form_row(form.name) }}</h1>
+            <h1>Modifie ce trick ! </h1>
+
+            <h2 id="mainText">{{ form_row(form.name) }}</h2>
 
             <img src="https://picsum.photos/1200/800" alt="">
             <div class="controls">
@@ -29,78 +31,37 @@
 
         <div id="medias">
 
-            <div class="list pictures">
+            <div class="list pictures" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
 
-                <div id="" class="media picture">
+                {% for image in form.images %}
 
-                    <div class="inner">
+                    {% set index = loop.index0 %}
 
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+                    <div id="image_{{ index }}" class="media picture">
+
+                        <div class="inner">
+
+                            <img class="trick_thumbnail" src="{{ asset(figure.images[index].filePath)|imagine_filter('trick_thumbnail') }}"/>
+
+                            <div  class="edit">
+                                {{ form_row(image.name) }}
+                                {{ form_row(image.filename) }}
+                            </div>
+
+                            <div class="controls">
+                                <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
+                {% endfor %}
 
             </div>
+
+            <button type="button" class="add_item_link btn" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
 
             <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
 
@@ -138,9 +99,6 @@
         <aside id="aside">
 
             <div id="infos">
-                {% if errors is defined %}
-                    {{ dump(errors) }}
-                {% endif %}
                 {{ form_row(form.group) }}
 
             </div>

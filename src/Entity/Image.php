@@ -35,6 +35,11 @@ class Image
     private $figure;
 
 
+    public function __toString(){
+        return $this->name;
+    }
+
+
 
     public function getFilePath(){
 

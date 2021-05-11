@@ -10,7 +10,9 @@
 
             <h1>{{ figure.name }}</h1>
 
-            <img src="https://picsum.photos/1200/800" alt="">
+            {% if(figure.images|length > 0) %}
+                <img src="{{ asset(figure.images[0].filePath)|imagine_filter('trick_thumbnail') }}" alt="">
+            {% endif %}
 
         </div>
 
@@ -20,54 +22,19 @@
 
             <div class="list">
 
-                <div id="" class="media picture">
+                {% for image in figure.images %}
 
-                    <div class="inner">
+                    {% if loop.index0 > 0 %}
 
-                        <img src="https://picsum.photos/300/168" alt="">
+                        <div id="image_{{ loop.index0 }}" class="media picture">
+                            <div class="inner">
+                                <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
+                            </div>
+                        </div>
 
-                    </div>
+                    {% endif %}
 
-                </div>
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
-
-                <div id="" class="media picture">
-
-                    <div class="inner">
-
-                        <img src="https://picsum.photos/300/168" alt="">
-
-                    </div>
-
-                </div>
+                {% endfor %}
 
                 {% for video in figure.videos %}
 

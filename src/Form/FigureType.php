@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\GroupListTransformer;
 
@@ -27,7 +29,7 @@ class FigureType extends AbstractType
             ->add('group', EntityType::class, [
                 'class' => Group::class,
                 'choice_label' => 'name',
-                'allow_extra_fields' => true,
+                'allow_extra_fields' => true, // TODO: try to make it work
             ])
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
@@ -38,7 +40,16 @@ class FigureType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false, //https://symfony.com/doc/current/form/form_collections.html
                 'allow_delete' => true,
+            ])
+
+            ->add('images', CollectionType::class, [
+                'entry_type' => FigureImageType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false, //https://symfony.com/doc/current/form/form_collections.html
+                'allow_delete' => true,
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
