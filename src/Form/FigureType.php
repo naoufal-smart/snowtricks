@@ -50,29 +50,6 @@ class FigureType extends AbstractType
                 'allow_delete' => true,
             ]);
 
-
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-            $figure = $event->getData(); // = Données postées
-            $form = $event->getForm(); // = Formulaire original
-
-            // dd($form->get('images')->getData());
-/*            $images = $figure['images'];
-
-            $return = [];
-
-            foreach ($images as $image){
-                if($image['filename'] !== null ){
-
-                    $return[] = $image;
-
-                }
-            }
-
-            $figure['images'] = $return;
-            $event->setData($figure);*/
-
-        });
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -10,7 +10,9 @@
 
             <h1>{{ figure.name }}</h1>
 
-            <img src="https://picsum.photos/1200/800" alt="">
+            {% if(figure.images|length > 0) %}
+                <img src="{{ asset(figure.images[0].filePath)|imagine_filter('trick_thumbnail') }}" alt="">
+            {% endif %}
 
         </div>
 
@@ -22,15 +24,15 @@
 
                 {% for image in figure.images %}
 
-                <div id="image_{{ image.id }}" class="media picture">
+                    {% if loop.index0 > 0 %}
 
-                    <div class="inner">
+                        <div id="image_{{ loop.index0 }}" class="media picture">
+                            <div class="inner">
+                                <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
+                            </div>
+                        </div>
 
-                        <img class="trick_thumbnail" src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}"/>
-
-                    </div>
-
-                </div>
+                    {% endif %}
 
                 {% endfor %}
 
