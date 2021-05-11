@@ -13,17 +13,27 @@
 
         {{ form_start(form) }}
 
-        <div id="mainPicture">
+        <div id="mainPicture" class="picture">
 
             <h1>Modifie ce trick ! </h1>
 
             <h2 id="mainText">{{ form_row(form.name) }}</h2>
 
-            <img src="https://picsum.photos/1200/800" alt="">
-            <div class="controls">
-                <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
+            <div class="controls_wrapper">
+                <div class="controls">
+                    <a href="#" class="control update"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="#" class="control delete"><i class="fas fa-trash-alt"></i></a>
+                </div>
+                <div  class="edit">
+                    {{ form_row(form.mainImage.name) }}
+                    {{ form_row(form.mainImage.filename) }}
+                </div>
+
             </div>
+
+            {% if(figure.mainImage) %}
+                <img src="{{ asset(figure.mainImage.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ figure.mainImage.name }}">
+            {% endif %}
 
         </div>
 

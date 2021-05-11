@@ -73,7 +73,7 @@ add_image.addEventListener('click', (e) => {
 })
 
 // Toggle le champ de saisie pour modifier l'image
-const edit_picture_icons = document.querySelectorAll('body.figure-edition .list.pictures .picture .update');
+const edit_picture_icons = document.querySelectorAll('body.figure-edition .picture .update');
 let picture_field;
 Array.from(edit_picture_icons).forEach(function(icon){
     icon.addEventListener('click', function(e){
@@ -84,7 +84,7 @@ Array.from(edit_picture_icons).forEach(function(icon){
 });
 
 // Supprimer une image
-const delete_picture_icon = document.querySelectorAll('body.figure-edition .list.pictures .picture .delete')
+const delete_picture_icon = document.querySelectorAll('body.figure-edition .picture .delete')
 let picture;
 Array.from(delete_picture_icon).forEach(function(icon){
     icon.addEventListener('click', function(e){
