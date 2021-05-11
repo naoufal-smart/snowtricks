@@ -66,6 +66,11 @@ class Figure
      */
     private $videos;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="figureMain", cascade={"persist", "remove"})
+     */
+    private $mainImage;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -226,6 +231,18 @@ class Figure
                 $video->setFigure(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMainImage(): Image
+    {
+        return $this->mainImage;
+    }
+
+    public function setMainImage(Image $mainImage): self
+    {
+        $this->mainImage = $mainImage;
 
         return $this;
     }

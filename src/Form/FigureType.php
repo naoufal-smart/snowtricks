@@ -42,6 +42,8 @@ class FigureType extends AbstractType
                 'allow_delete' => true,
             ])
 
+            ->add('mainImage', FigureImageType::class)
+
             ->add('images', CollectionType::class, [
                 'entry_type' => FigureImageType::class,
                 'entry_options' => ['label' => false],

@@ -30,9 +30,13 @@ class Image
 
     /**
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Figure::class, mappedBy="mainImage", cascade={"persist", "remove"})
+     */
+    private $figureMain;
 
 
     public function __toString(){
@@ -86,6 +90,28 @@ class Image
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
+
+        return $this;
+    }
+
+    public function getFigureMain(): ?Figure
+    {
+        return $this->figureMain;
+    }
+
+    public function setFigureMain(?Figure $figureMain): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($figureMain === null && $this->figureMain !== null) {
+            $this->figureMain->setMainImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($figureMain !== null && $figureMain->getMainImage() !== $this) {
+            $figureMain->setMainImage($this);
+        }
+
+        $this->figureMain = $figureMain;
 
         return $this;
     }

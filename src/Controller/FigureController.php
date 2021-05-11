@@ -101,6 +101,17 @@ class FigureController extends AbstractController
                     }
                 }
 
+                $mainImageForm = $form->get('mainImage');
+                $uploadedFile = $mainImageForm->get('filename')->getData();
+                if($uploadedFile !== null){
+                    // Upload Image
+                    $newFilename = $imageUploader->upload($uploadedFile, null);
+                    $image = new Image();
+                    $image->setFilename($newFilename);
+                    $image->setName($mainImageForm->get('name')->getData());
+                    $figure->setMainImage($image);
+                }
+
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($figure);
                 $entityManager->flush();
