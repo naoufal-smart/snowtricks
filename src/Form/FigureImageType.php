@@ -23,6 +23,7 @@ class FigureImageType extends AbstractType
 
         $builder
             ->add('name')
+            //->add('isMain')
             ->add('filename', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false,

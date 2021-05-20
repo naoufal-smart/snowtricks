@@ -34,9 +34,9 @@ class Image
     private $figure;
 
     /**
-     * @ORM\OneToOne(targetEntity=Figure::class, mappedBy="mainImage", cascade={"persist", "remove"})
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $figureMain;
+    private $isMain;
 
 
     public function __toString(){
@@ -94,24 +94,14 @@ class Image
         return $this;
     }
 
-    public function getFigureMain(): ?Figure
+    public function getIsMain(): ?bool
     {
-        return $this->figureMain;
+        return $this->isMain;
     }
 
-    public function setFigureMain(?Figure $figureMain): self
+    public function setIsMain(?bool $isMain): self
     {
-        // unset the owning side of the relation if necessary
-        if ($figureMain === null && $this->figureMain !== null) {
-            $this->figureMain->setMainImage(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($figureMain !== null && $figureMain->getMainImage() !== $this) {
-            $figureMain->setMainImage($this);
-        }
-
-        $this->figureMain = $figureMain;
+        $this->isMain = $isMain;
 
         return $this;
     }

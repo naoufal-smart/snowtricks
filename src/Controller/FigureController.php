@@ -34,13 +34,32 @@ class FigureController extends AbstractController
     /**
      * @Route("/new", name="figure_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ImageUploader $imageUploader): Response
     {
         $figure = new Figure();
         $form = $this->createForm(FigureType::class, $figure);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imagesForm = $form->get('images');
+
+            foreach ($imagesForm as $key => $imageForm){
+                $uploadedFile = $imageForm->get('filename')->getData();
+                if($uploadedFile !== null){
+                    // Upload Image
+                    $newFilename = $imageUploader->upload($uploadedFile, null);
+                    $image = new Image();
+                    $image->setFilename($newFilename);
+                    $image->setName($imageForm->get('name')->getData());
+                    $figure->addImage($image);
+                    // Delete Submitted Field !!!
+                    // dump($figure->getImages()); // Données brutes postées
+                    $originalData = $figure->getImages()[$key];
+                    $figure->removeImage($originalData);
+                }
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($figure);
             $entityManager->flush();
@@ -99,17 +118,6 @@ class FigureController extends AbstractController
                         $originalData = $figure->getImages()[$key];
                         $figure->removeImage($originalData);
                     }
-                }
-
-                $mainImageForm = $form->get('mainImage');
-                $uploadedFile = $mainImageForm->get('filename')->getData();
-                if($uploadedFile !== null){
-                    // Upload Image
-                    $newFilename = $imageUploader->upload($uploadedFile, null);
-                    $image = new Image();
-                    $image->setFilename($newFilename);
-                    $image->setName($mainImageForm->get('name')->getData());
-                    $figure->setMainImage($image);
                 }
 
                 $entityManager = $this->getDoctrine()->getManager();

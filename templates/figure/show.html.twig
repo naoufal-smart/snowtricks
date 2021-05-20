@@ -10,9 +10,9 @@
 
             <h1>{{ figure.name }}</h1>
 
-            {% if(figure.mainImage) %}
-                <img src="{{ asset(figure.mainImage.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ figure.mainImage.name }}">
-            {% endif %}
+            {% for image in figure.images|filter(image => image.isMain) %}
+                <img src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ image.name }}">
+            {% endfor %}
 
         </div>
 
@@ -22,7 +22,7 @@
 
             <div class="list">
 
-                {% for image in figure.images %}
+                {% for image in figure.images|filter(image => not(image.isMain)) %}
 
                     <div id="image_{{ loop.index0 }}" class="media picture">
                         <div class="inner">
