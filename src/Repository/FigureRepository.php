@@ -19,6 +19,24 @@ class FigureRepository extends ServiceEntityRepository
         parent::__construct($registry, Figure::class);
     }
 
+    /**
+    * @return Figure[] Returns an array of Figure objects with there mainImage
+    */
+
+    public function findAllFigureWithRelatedMainImages()
+    {
+        return $this->createQueryBuilder('f')
+            ->join('f.images', 'i')
+            ->addSelect('i')
+            ->where('i.isMain=:isMain')
+            ->setParameter('isMain', true)
+            ->orderBy('f.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Figure[] Returns an array of Figure objects
     //  */

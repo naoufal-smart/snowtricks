@@ -37,7 +37,11 @@
 
                     <div class="innerCard">
 
-                        <img src="https://picsum.photos/300/168" alt="">
+                        {% for image in figure.images | filter(i => i.isMain) %}
+
+                            <img src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ image.name }}">
+
+                        {% endfor %}
 
                         <div class="links">
                             <a href="{{ path('figure_show', {'slug': figure.slug}) }}">{{ figure.name }}</a>
