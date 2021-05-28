@@ -29,8 +29,12 @@
             <ul>
                 <li><a href="/figure/">Home</a></li>
                 <li><a href="/figure/#tricks">Tricks</a></li>
-                <li><a href="homepage.php">SignIn</a></li>
-                <li><a href="homepage.php">SignUp</a></li>
+                {% if app.user %}
+                    <li><a href="/logout">Logout</a></li>
+                {% else %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                {% endif %}
 
             </ul>
 
