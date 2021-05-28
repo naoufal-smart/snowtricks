@@ -1,3 +1,5 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
 html {scroll-behavior: smooth;}
 body{margin:0}
 
@@ -117,6 +119,11 @@ body.figure-edition textarea{width: 100%; padding: 2em; box-sizing: border-box;}
 
 body.figure_creation #mainPicture { background-image: linear-gradient(silver,silver); min-height: 600px; }
 body.figure_creation textarea{width: 100%; padding: 2em; box-sizing: border-box;}
+
+/* Login & register */
+
+.login_form{width:400px; position:relative;}
+.login_form .alert{position:relative;}
 
 
 
