@@ -44,6 +44,9 @@ class FigureController extends AbstractController
 
             $imagesForm = $form->get('images');
 
+/*            dump($figure->getImages()); // Données brutes postées
+            dd($imagesForm);*/
+
             foreach ($imagesForm as $key => $imageForm){
                 $uploadedFile = $imageForm->get('filename')->getData();
                 if($uploadedFile !== null){
@@ -52,9 +55,11 @@ class FigureController extends AbstractController
                     $image = new Image();
                     $image->setFilename($newFilename);
                     $image->setName($imageForm->get('name')->getData());
+                    if($key == 0){
+                        $image->setIsMain(true);
+                    }
                     $figure->addImage($image);
-                    // Delete Submitted Field !!!
-                    // dump($figure->getImages()); // Données brutes postées
+                    // Delete Submitted Field
                     $originalData = $figure->getImages()[$key];
                     $figure->removeImage($originalData);
                 }

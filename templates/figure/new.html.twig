@@ -13,18 +13,19 @@
 
         {{ form_start(form) }}
 
+        {% set dataPrototype %}
+            {{ form_widget(form.images.vars.prototype)|e('html_attr') }}
+        {% endset %}
+
         <div id="mainPicture">
 
             <h2 id="mainText">{{ form_row(form.name) }}</h2>
 
             <div class="controls_wrapper">
                 <div class="controls">
-                    <a href="#" class="control"><i class="fas fa-plus"></i></a>
+                    <a href="#" class="control" id="add_main_image" data-prototype="{{ dataPrototype }}"><i class="fas fa-plus"></i></a>
                 </div>
-                <div  class="edit">
-           {#         {{ form_row(form.mainImage.name) }}
-                    {{ form_row(form.mainImage.filename) }}#}
-                </div>
+                <div  class="edit"></div>
             </div>
 
         </div>
@@ -33,7 +34,7 @@
 
         <div id="medias">
 
-            <div class="list pictures" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+            <div class="list pictures" data-prototype="{{ dataPrototype }}">
 
             </div>
 

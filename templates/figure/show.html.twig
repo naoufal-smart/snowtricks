@@ -6,6 +6,12 @@
 
     <section id="sheet">
 
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <div id="mainPicture">
 
             <h1>{{ figure.name }}</h1>
