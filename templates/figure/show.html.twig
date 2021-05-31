@@ -14,7 +14,7 @@
 
         <div id="mainPicture">
 
-            <h1>{{ figure.name }}</h1>
+            <h1 id="mainText">{{ figure.name }}</h1>
 
             {% for image in figure.images|filter(image => image.isMain) %}
                 <img src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ image.name }}">
@@ -65,7 +65,7 @@
                 <div class="info">{{ figure.group.name }}</div>
                 <div class="info date"><span>Créé le : </span>{{ figure.createdAt|format_datetime(pattern="d MMM yyyy") }}</div>
                 <div class="info date"><span>Mis à jour le : </span>{{ figure.updatedAt|format_datetime(pattern="d MMM yyyy") }}</div>
-                <div class="action edit"><button><a class="btn" href="{{ path('figure_edit', {'id': figure.id}) }}">edit</a></button></div>
+                <div class="action edit"><a class="btn btn-primary" href="{{ path('figure_edit', {'id': figure.id}) }}">edit</a></div>
                 <div class="action delete">{{ include('figure/_delete_form.html.twig') }}</div>
             </div>
 

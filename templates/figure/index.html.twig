@@ -17,10 +17,11 @@
         </div>
     {% endfor %}
 
-    <div id="teaser" style="background-image:url('https://picsum.photos/1400/800')">
+    <div id="teaser" style="background-image:url('http://localhost:8080/build/images/mainImage.jpg')">
 
         <div class="hero">
-            <h1 id="mainText">Phrase d'accroche</h1>
+            <h1 id="mainText">Snowtrick</h1>
+            <h2>Site collaboratif pour les mordus de snow</h2>
         </div>
 
         <a id="scrollDown"><i class="fas fa-arrow-down"></i></a>
@@ -33,13 +34,15 @@
 
             {% for figure in figures %}
 
-                <div id="{{ figure.id }}" class="trick card">
+                <div id="{{ figure.id }}" class="trick">
 
                     <div class="innerCard">
 
                         {% for image in figure.images | filter(i => i.isMain) %}
 
+                        <a href="{{ path('figure_show', {'slug': figure.slug}) }}">
                             <img src="{{ asset(image.filePath)|imagine_filter('trick_thumbnail') }}" alt="{{ image.name }}">
+                        </a>
 
                         {% endfor %}
 
@@ -57,17 +60,11 @@
 
             {% endfor %}
 
-            <div id="" class="trick card add_new">
+            <div id="" class="trick add_new">
 
                 <div class="innerCard">
 
-                    <div class="fake">
-
-                        <button class="btn"><a href="{{ path('figure_new') }}">Ajoute un nouveau trick !</a></button>
-
-                    </div>
-
-
+                    <a class="btn btn-outline-primary" href="{{ path('figure_new') }}"><i class="fas fa-plus fa-5x"></i></a>
 
                 </div>
 
@@ -75,7 +72,7 @@
 
         </div>
 
-        <a href="#" class="loadMore btn">LoadMore</a>
+        <a href="#" class="loadMore btn btn-primary">LoadMore</a>
 
         <a id="scrollUp"><i class="fas fa-arrow-up"></i></a>
 

@@ -20,9 +20,9 @@ final class Version20210512120232 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE figure DROP FOREIGN KEY FK_2F57B37AE4873418');
-        $this->addSql('DROP INDEX UNIQ_2F57B37AE4873418 ON figure');
-        $this->addSql('ALTER TABLE figure DROP main_image_id');
+        // $this->addSql('ALTER TABLE figure DROP FOREIGN KEY FK_2F57B37AE4873418');
+        // $this->addSql('DROP INDEX UNIQ_2F57B37AE4873418 ON figure');
+        // $this->addSql('ALTER TABLE figure DROP main_image_id');
     }
 
     public function down(Schema $schema) : void

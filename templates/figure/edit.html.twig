@@ -47,7 +47,7 @@
 
         </div>
 
-        <a id="seeAllMedia" class="btn">See All Media</a>
+        <a id="seeAllMedia" class="btn btn-primary">See All Media</a>
 
         <div id="medias">
 
@@ -91,7 +91,7 @@
 
             </div>
 
-            <button type="button" class="add_item_link btn" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
+            <button type="button" class="add_item_link btn btn-primary" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
 
             <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
 
@@ -118,7 +118,7 @@
 
             </div>
 
-            <button type="button" class="add_item_link btn" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
+            <button type="button" class="add_item_link btn btn-primary" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
 
         </div>
 
@@ -135,11 +135,11 @@
 
         </aside>
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 
         {{ form_end(form) }}
 
-        <button class="btn"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
+        <button class="btn btn-outline-primary"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
 
         {{ include('figure/_delete_form.html.twig') }}
 
