@@ -15,7 +15,7 @@ class VideoFixtures extends abstractFixtures implements DependentFixtureInterfac
         for ($i = 0; $i < 10; $i++) {
             $video = new Video();
             $video->setTag("https://www.youtube.com/embed/V9xuy-rVj9w");
-            $video->setFigure($this->getReference('figure_'.random_int(0, 19)));
+            $video->setFigure($this->getReference('figure_'.random_int(0, 4)));
             $manager->persist($video);
             $this->addReference("video_".$i, $video);
         }
