@@ -145,9 +145,7 @@ class FigureController extends AbstractController
      */
     public function delete(Request $request, Figure $figure): Response
     {
-        $figure_id = int($figure->getId());
-
-        if ($this->isCsrfTokenValid('delete'.$figure_id, $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$figure->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($figure);
             $entityManager->flush();
