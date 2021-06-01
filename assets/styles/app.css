@@ -110,6 +110,8 @@ body.trick::before {
 .list.videos .video .edit {display:none; }
 .list.videos .video .edit.visible {display:block}
 
+.cartouche {display:block; padding:1em 1.2em; margin: 1em 0; border-bottom: 1px solid gray;}
+
 /* Page trick edit*/
 
 body.figure-edition #medias .media .controls {justify-content: center;}

@@ -30,46 +30,48 @@
 
         </div>
 
-        <a id="seeAllMedia" class="btn">See All Media</a>
+        <a id="seeAllMedia" class="btn btn-primary">See All Media</a>
 
         <div id="medias">
 
-            <div class="list pictures" data-prototype="{{ dataPrototype }}">
+            {{ form_label(form.images, 'Ajouter des images', { 'label_attr': {'class': 'cartouche'} }) }}
+            {{ form_errors(form.images) }}
 
-            </div>
+            <div class="list pictures" data-prototype="{{ dataPrototype }}"></div>
 
-            <button type="button" class="add_item_link btn" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
+            {{ form_widget(form.images) }}
 
-            {{ form_label(form.videos) }}
+            <button type="button" class="add_item_link btn btn-primary" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
+
+            {{ form_label(form.videos, 'Ajouter des vidéos', { 'label_attr': {'class': 'cartouche'} }) }}
             {{ form_errors(form.videos) }}
 
             <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"></div>
 
             {{ form_widget(form.videos) }}
 
-            <button type="button" class="add_item_link btn" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
+            <button type="button" class="add_item_link btn btn-primary" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
 
         </div>
 
         <article id="">
-            <p>{{ form_label(form.text) }}</p>
+            <p>{{ form_label(form.text, 'Ajouter une description', { 'label_attr': {'class': 'cartouche'} }) }}</p>
             <p>{{ form_errors(form.text) }}</p>
             <p>{{ form_widget(form.text) }}</p>
         </article>
 
         <aside id="">
-
-            <div id="infos">
-                {{ form_row(form.group) }}
-            </div>
+            {{ form_label(form.group, 'Sélectionner une catégorie', { 'label_attr': {'class': 'cartouche'} }) }}
+            {{ form_errors(form.group) }}
+            {{ form_widget(form.group) }}
 
         </aside>
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 
         {{ form_end(form) }}
 
-        <button class="btn"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
+        <button class="btn btn-outline-primary"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
 
     </section>
 
