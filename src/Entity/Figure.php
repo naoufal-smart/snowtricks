@@ -57,19 +57,20 @@ class Figure
     private $group;
 
     /**
-     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="figure", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="Figure", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="Figure", orphanRemoval=true, cascade={"persist", "remove"})
      */
     private $videos;
 
     /**
-     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="figureMain", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="figures")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $mainImage;
+    private $user;
 
     public function __construct()
     {
@@ -235,15 +236,16 @@ class Figure
         return $this;
     }
 
-    public function getMainImage(): Image
+    public function getUser(): ?User
     {
-        return $this->mainImage;
+        return $this->user;
     }
 
-    public function setMainImage(Image $mainImage): self
+    public function setUser(?User $user): self
     {
-        $this->mainImage = $mainImage;
+        $this->user = $user;
 
         return $this;
     }
+
 }

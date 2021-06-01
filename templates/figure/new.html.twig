@@ -2,74 +2,76 @@
 
 {% block title %}New Figure{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('figure_new') }}
+{% endblock %}
+
 {% block body %}
 
     <section id="sheet">
 
         {{ form_start(form) }}
 
+        {% set dataPrototype %}
+            {{ form_widget(form.images.vars.prototype)|e('html_attr') }}
+        {% endset %}
+
         <div id="mainPicture">
 
             <h2 id="mainText">{{ form_row(form.name) }}</h2>
 
-            <div class="controls">
-                <a href="#" class="control"><i class="fas fa-plus"></i></a>
+            <div class="controls_wrapper">
+                <div class="controls">
+                    <a href="#" class="control" id="add_main_image" data-prototype="{{ dataPrototype }}"><i class="fas fa-plus"></i></a>
+                </div>
+                <div  class="edit"></div>
             </div>
 
         </div>
 
-        <a id="seeAllMedia" class="btn">See All Media</a>
+        <a id="seeAllMedia" class="btn btn-primary">See All Media</a>
 
         <div id="medias">
 
-            <div class="list pictures">
+            {{ form_label(form.images, 'Ajouter des images', { 'label_attr': {'class': 'cartouche'} }) }}
+            {{ form_errors(form.images) }}
 
-                <div id="" class="media picture">
+            <div class="list pictures" data-prototype="{{ dataPrototype }}"></div>
 
-                    <div class="inner">
+            {{ form_widget(form.images) }}
 
-                        <img src="https://picsum.photos/300/168" alt="">
-                        <div class="controls">
-                            <a href="#" class="control"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="#" class="control"><i class="fas fa-trash-alt"></i></a>
-                        </div>
+            <button type="button" class="add_item_link btn btn-primary" id="add_image" data-collection-holder-class="images">Ajouter une image</button>
 
-                    </div>
-
-                </div>
-
-            </div>
-
-            {{ form_label(form.videos) }}
+            {{ form_label(form.videos, 'Ajouter des vidéos', { 'label_attr': {'class': 'cartouche'} }) }}
             {{ form_errors(form.videos) }}
 
             <div class="list videos"  data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"></div>
 
             {{ form_widget(form.videos) }}
 
-            <button type="button" class="add_item_link btn" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
+            <button type="button" class="add_item_link btn btn-primary" id="add_video" data-collection-holder-class="videos">Ajouter une video</button>
 
         </div>
 
         <article id="">
-            <p>{{ form_label(form.text) }}</p>
+            <p>{{ form_label(form.text, 'Ajouter une description', { 'label_attr': {'class': 'cartouche'} }) }}</p>
             <p>{{ form_errors(form.text) }}</p>
             <p>{{ form_widget(form.text) }}</p>
         </article>
 
         <aside id="">
-
-            <div id="infos">
-                {{ form_row(form.group) }}
-            </div>
+            {{ form_label(form.group, 'Sélectionner une catégorie', { 'label_attr': {'class': 'cartouche'} }) }}
+            {{ form_errors(form.group) }}
+            {{ form_widget(form.group) }}
 
         </aside>
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 
         {{ form_end(form) }}
 
-        <button class="btn"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
+        <button class="btn btn-outline-primary"><a href="{{ path('figure_index') }}">Retour à la liste</a></button>
 
     </section>
 

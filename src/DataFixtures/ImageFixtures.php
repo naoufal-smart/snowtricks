@@ -6,39 +6,31 @@ namespace App\DataFixtures;
 
 use App\Entity\Image;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
 
-class ImageFixtures
+
+class ImageFixtures extends abstractFixtures
 {
-
-    public $faker;
-
-    public function __construct()
-    {
-
-        $this->faker = Factory::create('fr_FR');
-    }
 
     public function load(ObjectManager $manager)
     {
 
         // TODO: Implement this
 
-       /* for ($i = 0; $i < 5; $i++) {
+/*        for ($i = 0; $i < 10; $i++) {
            $image = new Image();
-            $image->setName($this->faker->sentence(5));
-
-            // Set Figure
+           $image->setName($this->faker->sentence(5));
 
 
+           // Set IsMain Only Once
+           $image->setIsMain(false);
 
-            // Set ImageFile
+           // Set ImageFile
 
-                // https://symfonycasts.com/screencast/symfony-uploads/fixtures-uploading
+           // https://symfonycasts.com/screencast/symfony-uploads/fixtures-uploading
 
             $manager->persist($image);
-        }*/
+        }
 
-        $manager->flush();
+        $manager->flush();*/
     }
 }

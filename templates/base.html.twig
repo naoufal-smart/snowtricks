@@ -22,15 +22,19 @@
     <header id="header">
 
         <a href="homepage.php" id="logo">
-            <img src="https://picsum.photos/80" alt="">
+            <img src="{{ asset('build/images/logo.png') }}" alt="trick logo">
         </a>
 
         <nav>
             <ul>
                 <li><a href="/figure/">Home</a></li>
                 <li><a href="/figure/#tricks">Tricks</a></li>
-                <li><a href="homepage.php">SignIn</a></li>
-                <li><a href="homepage.php">SignUp</a></li>
+                {% if app.user %}
+                    <li><a href="/logout">Logout</a></li>
+                {% else %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                {% endif %}
 
             </ul>
 
