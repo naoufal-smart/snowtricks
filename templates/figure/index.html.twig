@@ -49,7 +49,7 @@
                         <div class="links">
                             <a href="{{ path('figure_show', {'slug': figure.slug}) }}">{{ figure.name }}</a>
 
-                             {% if app.user == figure.user %}
+                             {% if (app.user == figure.user) or (is_granted('ROLE_ADMIN')) %}
                                 <a href="{{ path('figure_edit', {'id': figure.id}) }}"><i class="fas fa-pencil-alt"></i></a>
                              {% endif %}
                         </div>

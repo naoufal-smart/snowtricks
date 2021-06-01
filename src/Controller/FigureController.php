@@ -120,7 +120,7 @@ class FigureController extends AbstractController
 
         $user = $this->security->getUser();
 
-        if($user == null || $figure->getUser() !== $user){
+        if($user == null || ($figure->getUser() !== $user && !$this->isGranted('ROLE_ADMIN'))){
             throw new AccessDeniedHttpException('Permission refusée');
         }
 
@@ -170,6 +170,12 @@ class FigureController extends AbstractController
      */
     public function delete(Request $request, Figure $figure): Response
     {
+        $user = $this->security->getUser();
+
+        if($user == null || ($figure->getUser() !== $user && !$this->isGranted('ROLE_ADMIN'))){
+            throw new AccessDeniedHttpException('Permission refusée');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$figure->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($figure);

@@ -22,7 +22,8 @@ class UserFixtures extends abstractFixtures
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
+
+        for ($i = 1; $i < 10; $i++) {
             $user = new User();
             $user->setFirstName('rider'.$i);
             $user->setPassword(
@@ -31,6 +32,13 @@ class UserFixtures extends abstractFixtures
                     'rider'.$i
                 )
             );
+
+            if($i == 0){
+                $user->setRoles(['ROLE_ADMIN']);
+            }else{
+                $user->setRoles(['ROLE_USER']);
+            }
+
             $user->setEmail('rider'.$i.'@snowtricks.com');
             $manager->persist($user);
             $this->addReference("user_".$i, $user);
