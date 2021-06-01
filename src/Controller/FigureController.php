@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -26,10 +28,15 @@ class FigureController extends AbstractController
      * @var Security
      */
     private $security;
+    /**
+     * @var MailerInterface
+     */
+    private $mailer;
 
-    public function __construct(Security $security)
+    public function __construct(Security $security, MailerInterface $mailer)
     {
         $this->security = $security;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -89,6 +96,14 @@ class FigureController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Création effectuée avec succès');
+
+            $email = (new Email())
+                ->from('postmaster@snowtricks.com')
+                ->to('admin@snowtricks.com')
+                 ->subject('Nouvelle figure')
+                ->text('Nouvelle figure')
+                ->html('<p>'.$figure->getId().'</p>');
+            $this->mailer->send($email);
 
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
