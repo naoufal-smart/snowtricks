@@ -11,7 +11,9 @@ use App\Service\ImageUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 
 /**
@@ -20,7 +22,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class FigureController extends AbstractController
 {
 
-     /**
+    /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
+    /**
      * @Route("/", name="figure_index", methods={"GET"})
      */
     public function index(FigureRepository $figureRepository): Response
@@ -36,11 +48,18 @@ class FigureController extends AbstractController
      */
     public function new(Request $request, ImageUploader $imageUploader): Response
     {
+
+        if ($this->isGranted('ROLE_USER') == false) {
+            throw new AccessDeniedHttpException('Permission refusée');
+        }
+
         $figure = new Figure();
         $form = $this->createForm(FigureType::class, $figure);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $figure->setUser($this->security->getUser());
 
             $imagesForm = $form->get('images');
 
@@ -98,6 +117,12 @@ class FigureController extends AbstractController
      */
     public function edit(Request $request, Figure $figure, ImageUploader $imageUploader): Response
     {
+
+        $user = $this->security->getUser();
+
+        if($user == null || $figure->getUser() !== $user){
+            throw new AccessDeniedHttpException('Permission refusée');
+        }
 
         $form = $this->createForm(FigureType::class, $figure);
 

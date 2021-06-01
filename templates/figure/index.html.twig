@@ -48,7 +48,10 @@
 
                         <div class="links">
                             <a href="{{ path('figure_show', {'slug': figure.slug}) }}">{{ figure.name }}</a>
-                            <a href="{{ path('figure_edit', {'id': figure.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+
+                             {% if app.user == figure.user %}
+                                <a href="{{ path('figure_edit', {'id': figure.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+                             {% endif %}
                         </div>
 
                     </div>
@@ -64,7 +67,9 @@
 
                 <div class="innerCard">
 
-                    <a class="btn btn-outline-primary" href="{{ path('figure_new') }}"><i class="fas fa-plus fa-5x"></i></a>
+                    {% if app.user %}
+                        <a class="btn btn-outline-primary" href="{{ path('figure_new') }}"><i class="fas fa-plus fa-5x"></i></a>
+                    {% endif %}
 
                 </div>
 
