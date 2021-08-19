@@ -78,6 +78,17 @@ class Figure
         $this->videos = new ArrayCollection();
     }
 
+    public function getMainImage():Image {
+
+        foreach ($this->getImages() as $image){
+            if($image->getIsMain() == true){
+             return $image;
+            }
+        }
+
+        return null;
+    }
+
 
 
     /**

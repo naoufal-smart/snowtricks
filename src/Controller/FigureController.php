@@ -88,6 +88,7 @@ class FigureController extends AbstractController
                     // Delete Submitted Field
                     $originalData = $figure->getImages()[$key];
                     $figure->removeImage($originalData);
+                    // Remove file
                 }
             }
 
@@ -97,13 +98,13 @@ class FigureController extends AbstractController
 
             $this->addFlash('success', 'Création effectuée avec succès');
 
-            $email = (new Email())
+/*            $email = (new Email())
                 ->from('postmaster@snowtricks.com')
                 ->to('admin@snowtricks.com')
                  ->subject('Nouvelle figure')
                 ->text('Nouvelle figure')
                 ->html('<p>'.$figure->getId().'</p>');
-            $this->mailer->send($email);
+            $this->mailer->send($email);*/
 
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
@@ -135,8 +136,12 @@ class FigureController extends AbstractController
 
         $user = $this->security->getUser();
 
-        if($user == null || ($figure->getUser() !== $user && !$this->isGranted('ROLE_ADMIN'))){
-            throw new AccessDeniedHttpException('Permission refusée');
+        if($user == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        if($figure->getUser() !== $user && !$this->isGranted('ROLE_ADMIN')){
+            // throw new AccessDeniedHttpException('Permission refusée');
         }
 
         $form = $this->createForm(FigureType::class, $figure);
@@ -151,17 +156,30 @@ class FigureController extends AbstractController
 
                 foreach ($imagesForm as $key => $imageForm){
                     $uploadedFile = $imageForm->get('filename')->getData();
+
                     if($uploadedFile !== null){
-                        // Upload Image
+
+                        $isNewImage =  $figure->getImages()[$key] == null ? true:false;
+
+                        if($isNewImage){
+                            $image = new Image();
+                        }else{
+                            $image = $figure->getImages()[$key];
+                        }
+
                         $newFilename = $imageUploader->upload($uploadedFile, null);
-                        $image = new Image();
                         $image->setFilename($newFilename);
                         $image->setName($imageForm->get('name')->getData());
-                        $figure->addImage($image);
-                        // Delete Submitted Field !!!
-                        // dump($figure->getImages()); // Données brutes postées
-                        $originalData = $figure->getImages()[$key];
-                        $figure->removeImage($originalData);
+
+                        // Main Image
+                        if($key == 0){
+                            $figure->getMainImage()->setIsMain(false);
+                            $image->setIsMain(true);
+                        }
+
+                        if($isNewImage){
+                            $figure->addImage($image);
+                        }
                     }
                 }
 
@@ -188,7 +206,7 @@ class FigureController extends AbstractController
         $user = $this->security->getUser();
 
         if($user == null || ($figure->getUser() !== $user && !$this->isGranted('ROLE_ADMIN'))){
-            throw new AccessDeniedHttpException('Permission refusée');
+            // throw new AccessDeniedHttpException('Permission refusée');
         }
 
         if ($this->isCsrfTokenValid('delete'.$figure->getId(), $request->request->get('_token'))) {
